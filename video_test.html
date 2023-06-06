@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Video Player</title>
+    <style>
+      #videoElement {
+        width: 640px;
+        height: 480px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Video Player</h1>
+    
+    <video id="videoElement" autoplay></video>
+    
+    <script>
+      // Check if getUserMedia is supported
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function(stream) {
+            var videoElement = document.getElementById('videoElement');
+            videoElement.srcObject = stream;
+          })
+          .catch(function(error) {
+            console.error('Error accessing the webcam:', error);
+          });
+      } else {
+        console.error('getUserMedia is not supported');
+      }
+    </script>
+  </body>
+</html>
+
